@@ -5,6 +5,7 @@ import About from './components/About'
 import Users from './components/Users'
 import Navbar from './components/NavBar'
 import NotFound from './components/NotFound'
+import UserProfile from './components/UserProfile'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/users/user" element={<UserProfile />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

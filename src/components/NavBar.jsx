@@ -7,7 +7,7 @@ const Navbar = () => {
     <>
       <nav>
         <Link to={'/'} className="logo-nav">
-          Git Explorer
+          Home
         </Link>
         <div className="link-cont">
           <Link to={'/'}>Repos</Link>
