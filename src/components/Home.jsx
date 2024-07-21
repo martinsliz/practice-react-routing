@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import './styles.css'
 
@@ -41,6 +42,7 @@ const RepoList = () => {
       ) : (
         <h1>Loading...</h1>
       )}
+      <Link to="/users">Go to Users Page</Link>
     </div>
   )
 }
