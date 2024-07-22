@@ -6,6 +6,7 @@ import Users from './components/Users'
 import Navbar from './components/NavBar'
 import NotFound from './components/NotFound'
 import UserProfile from './components/UserProfile'
+import SearchUser from './components/SearchUser'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/users" element={<Users />} />
           <Route path="/users/user/:username" element={<UserProfile />} />
+          <Route path="/search" element={<SearchUser />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

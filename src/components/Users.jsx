@@ -1,10 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Users = () => {
   //State management
   const [gitUsers, setGitUsers] = useState([])
+  const navigate = useNavigate()
 
   const getGitUsers = async () => {
     const response = await axios.get('https://api.github.com/users?since=XXXX')
@@ -28,9 +29,12 @@ const Users = () => {
               className="user-avatar"
             />
             <span className="username">{user.login}</span>
-            <Link to={`/users/user/${user.login}`} className="view-btn">
+            <button
+              onClick={() => navigate(`/users/user/${user.login}`)}
+              className="view-btn"
+            >
               View User
-            </Link>
+            </button>
           </div>
         ))}
       </div>
