@@ -40,7 +40,7 @@ const RepoList = () => {
           </div>
         ))
       ) : (
-        <h1>Loading...</h1>
+        <h1></h1>
       )}
       <Link to="/users">Go to Users Page</Link>
     </div>
