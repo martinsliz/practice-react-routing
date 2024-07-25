@@ -1,5 +1,6 @@
 import './App.css'
 import Home from './components/Home'
+import { appRoutes } from './appRoutes'
 import { useState, lazy, Suspense } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
@@ -27,30 +28,33 @@ function App() {
         >
           <Suspense fallback={() => <h1>Loading...</h1>}>
             <Routes location={location}>
-              {/* <Route path="/" element={<Navbar isLogged={isLogged} />}> */}
-              <Route exact path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/users" element={<Users />} />
-              <Route path="/users/user/:username" element={<UserProfile />} />
-              <Route path="/search" element={<SearchUser />} />
-              <Route
-                path="/login"
-                element={
-                  <Login setIsLogged={setIsLogged} setUsername={setUsername} />
-                }
-              />
-              <Route
-                path="/authProfile"
-                element={
-                  isLogged ? (
-                    <AuthProfile username={username} />
-                  ) : (
-                    <Navigate replace to={'/login'} />
+              {appRoutes.map((route) => {
+                if (route.requiresAuth && !isLogged) {
+                  return (
+                    <Route
+                      key={route.path}
+                      exact
+                      path={route.path}
+                      element={<Navigate replace to={'/login'} />}
+                    />
+                  )
+                } else {
+                  return (
+                    <Route
+                      key={route.path}
+                      exact
+                      path={route.path}
+                      element={
+                        <route.component
+                          setIsLogged={setIsLogged}
+                          setUsername={setUsername}
+                          username={username}
+                        />
+                      }
+                    />
                   )
                 }
-              />
-              {/* </Route> */}
-              <Route path="*" element={<NotFound />} />
+              })}
             </Routes>
           </Suspense>
         </CSSTransition>
